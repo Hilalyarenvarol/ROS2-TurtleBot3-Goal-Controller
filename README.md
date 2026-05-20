@@ -1,11 +1,14 @@
 ROS2 TurtleBot3 Goal Controller
+
 Bu proje, Rover Destek Ekip Ödev 4 kapsamında ROS2’ye giriş ve TurtleBot3 simülasyon uygulaması için hazırlanmıştır. Projede Ubuntu 22.04 üzerinde ROS2 Humble kurulmuş, TurtleBot3 robotu Gazebo ortamında çalıştırılmış ve Python ile yazılan bir ROS2 node'u kullanılarak robotun belirlenen hedef noktaya gitmesi sağlanmıştır.
 
 Proje Amacı
+
 Bu çalışmanın amacı ROS2 temel yapısını öğrenmek, topic mantığını kullanmak ve bir robotu simülasyon ortamında kontrol etmektir.
 Robotun konum bilgisi `/odom` topicinden okunmuştur. Robotun hareket etmesi için `/cmd_vel` topicine hız komutları gönderilmiştir. Python node'u robotun mevcut konumu ile hedef nokta arasındaki mesafeyi ve açı farkını hesaplayarak robotu hedefe yönlendirmiştir.
 
 Kullanılan Sistem ve Araçlar
+
 Ubuntu 22.04.5 LTS
 ROS2 Humble
 Gazebo
@@ -16,6 +19,7 @@ geometry_msgs
 nav_msgs
 
 Kurulum Özeti
+
 ROS2 Humble kurulumu yapıldıktan sonra ROS2 ortamı terminale tanıtılmıştır:
 ```bash
 source /opt/ros/humble/setup.bash
@@ -151,6 +155,7 @@ source install/setup.bash
 ros2 run turtlebot3_goal_controller go_to_goal
 ```
 Çıktılar ve Kanıtlar
+
 Proje çıktıları `outputs` klasöründe tutulmuştur.
 ```text
 outputs/
@@ -164,6 +169,7 @@ outputs/
 └── target_movement_video.webm
 ```
 Bu dosyalar şunları göstermektedir:
+
 Ubuntu 22.04 kurulumunun yapıldığını,
 ROS2 topiclerinin oluştuğunu,
 `/odom` verisinin alındığını,
@@ -173,12 +179,15 @@ Robotun hedef noktaya ulaştığını,
 Robot hareketinin video kaydını.
 
 Karşılaşılan Sorun ve Çözüm
+
 Gazebo ilk olarak `turtlebot3_world.launch.py` ile çalıştırıldığında görsel arayüz tarafında hata oluştu. Terminal çıktılarında robotun spawn olduğu, `/cmd_vel` topicine abone olduğu ve `/odom` topicini yayınladığı görülmesine rağmen `gzclient` kapanıyordu.
 Bu nedenle daha hafif ve engelsiz bir ortam olan `empty_world.launch.py` kullanıldı. Gazebo server `gui:=false` parametresi ile başlatıldı ve görsel arayüz ayrı olarak `gzclient` komutu ile açıldı.
 Bu çözümle TurtleBot3 Burger modeli Gazebo ortamında başarılı şekilde çalıştırıldı.
 
 Sonuç
+
 Bu projede ROS2 Humble kurulumu yapılmış, TurtleBot3 robotu Gazebo ortamında çalıştırılmış ve Python ile yazılan bir ROS2 node'u sayesinde robotun belirlenen hedef noktaya gitmesi sağlanmıştır. Robot `/odom` topicinden aldığı konum bilgisine göre hedefe yönelmiş ve `/cmd_vel` topicine gönderilen hız komutları ile hareket etmiştir. Hedefe ulaştığında robot durdurulmuştur.
 
 Hazırlayan
+
 Hilal Yaren Varol
