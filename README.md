@@ -40,6 +40,7 @@ Beklenen çıktı:
 burger
 ```
 Gazebo Ortamının Açılması
+
 İlk denemelerde `turtlebot3_world.launch.py` kullanıldığında Gazebo görsel arayüzü olan `gzclient` tarafında hata oluştu. Robot server tarafında spawn olmasına rağmen arayüz kapanıyordu. Bu nedenle daha hafif ve engelsiz bir ortam olan `empty_world.launch.py` kullanıldı.
 Ödevde robotun engelsiz bir ortamda hareket etmesi istendiği için `empty_world` ortamı uygun görülmüştür.
 
@@ -52,6 +53,8 @@ Daha sonra Gazebo arayüzü ayrı bir terminalde açıldı:
 gzclient
 ```
 Bu yöntemle TurtleBot3 Burger modeli Gazebo ortamında başarılı şekilde görüntülendi.
+
+
 ROS2 Topic Kontrolü
 
 Gazebo çalıştıktan sonra aktif topicler kontrol edildi:
@@ -74,6 +77,7 @@ ros2 topic echo /odom
 
 Bu komutla robotun anlık konumu ve yönelimi takip edilmiştir.
 
+
 Python Package Oluşturma
 Proje için `turtlebot3_goal_controller` isimli bir ROS2 Python paketi oluşturuldu:
 ```bash
@@ -86,6 +90,7 @@ Node dosyası şu konumdadır:
 turtlebot3_goal_controller/turtlebot3_goal_controller/go_to_goal.py
 ```
 Python Node'un Çalışma Mantığı
+
 `go_to_goal.py` dosyasında yazılan node şu işlemleri yapmaktadır:
 `/odom` topicinden robotun anlık konumunu okur.
 Robotun mevcut konumu ile hedef nokta arasındaki mesafeyi hesaplar.
@@ -94,6 +99,7 @@ Robotun hedefe dönmesi için açı hatasını hesaplar.
 Robot hedefe yeterince yaklaştığında hızları sıfırlayıp robotu durdurur.
 
 Seçilen Hedef Nokta
+
 Başlangıç noktası ile aynı doğrultuda olmaması için hedef nokta hem x hem de y ekseninde farklı seçilmiştir:
 ```python
 target_x = 1.5
@@ -102,6 +108,7 @@ target_y = 0.8
 Bu sayede robot yalnızca düz bir çizgide ilerlemek yerine hedef noktanın yönüne göre dönerek hareket etmiştir.
 
 Projeyi Build Etme
+
 Workspace ana dizinine geçilir:
 ```bash
 cd ~/ros2_ws
